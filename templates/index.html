@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>Plant Disease</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+   
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    
+</head>
+
+<body>
+
+        <header class="masthead" style="position: fixed; top:0;">
+                <div class="container" style="padding: 0 2.5rem;">
+                  <h3 class="masthead-brand">Plant Disease</h3>
+                  <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="#about">About Project</a>
+                    <a class="nav-link" href="#dataset">Dataset Description</a>
+                    <a class="nav-link" href="#diagnose">Demonstration</a>
+                  </nav>
+                </div>
+          </header>
+    <div class="container">
+        
+  
+        <div class="cover">
+        
+        <div class="pd-section" id="about">
+          <h1 class="cover-heading">About the Project</h1>
+          <p class="lead text-justify">
+                Diseases in crops pose a significant threat to food security. Detection of diseases at early stages of crop cycle when it first appears is very crucial and can save a lot of efforts, time and money of the farmers. The increasing number of smartphones and recent advances in computer vision made possible by deep learning has paved the way for smartphone-assisted disease diagnosis. Using a public dataset of 57,027 images of diseased and healthy plant leaves collected under controlled conditions, a deep convolutional neural network has been trained to identify 15 crop species and 41 diseases (or absence thereof). The trained model achieves an accuracy of 98.97%, demonstrating the feasibility of this approach.
+            </p>
+            </div>
+            <div class="pd-section" id="dataset">
+            <h2>Dataset Description</h2>
+            <p class="lead text-justify">
+                    For this project, 3 different datasets namely “Plant Village dataset”, "PlantDoc dataset" and "UCI ML Ric Leaf Disease dataset" are used. The dataset contains 57,027 images. The images span 15 crop species: Apple, Blueberry, Cherry, Grape, Orange, Peach, Bell Pepper, Potato, Raspberry, Soybean, Squash, Strawberry, Tomato, and Rice.
+                    The dataset contains 41 class labels. Each class label is a crop-disease pair, and an attempt is made to predict the crop-disease pair given just the image of the plant leaf. We resize the images to 256 x 256 pixels, and we perform both the model optimization and predictions on these downscaled images. The 41 classes of crop-disease pair are listed below:
+                   <ul>
+                       <li>Apple___Apple_scab</li>
+                       <li>Apple___Black_rot</li>
+                       <li>Apple___Cedar_apple_rust</li>
+                       <li>Apple___healthy</li>
+                       <li>Blueberry___healthy</li>
+                       <li>Cherry_(including_sour)___Powdery_mildew</li>
+                       <li>Cherry_(including_sour)___healthy</li>
+                       <li>Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot</li>
+                       <li>Corn_(maize)__Common_rust</li>
+                       <li>Corn_(maize)___Northern_Leaf_Blight</li>
+                       <li>Corn_(maize)___healthy</li>
+                       <li>Grape___Black_rot</li>
+                       <li>Grape___Esca_(Black_Measles)</li>
+                       <li>Grape___Leaf_blight_(Isariopsis_Leaf_Spot)</li>
+                       <li>Grape___healthy</li>
+                       <li>Orange___Haunglongbing_(Citrus_greening)</li>
+                       <li>Peach___Bacterial_spot</li>
+                       <li>Peach___healthy</li>
+                       <li>Pepper,_bell___Bacterial_spot</li>
+                       <li>Pepper,_bell___healthy</li>
+                       <li>Potato___Early_blight</li>
+                       <li>Potato___Late_blight</li>
+                       <li>Potato___healthy</li>
+                       <li>Raspberry___healthy</li>
+                       <li>Soybean___healthy</li>
+                       <li>Squash___Powdery_mildew</li>
+                       <li>Strawberry___Leaf_scorch</li>
+                       <li>Strawberry___healthy</li>
+                       <li>Tomato___Bacterial_spot</li>
+                       <li>Tomato___Early_blight</li>
+                       <li>Tomato___Late_blight</li>
+                       <li>Tomato___Leaf_Mold</li>
+                       <li>Tomato___Septoria_leaf_spot</li>
+                       <li>Tomato___Spider_mites Two-spotted_spider_mite</li>
+                       <li>Tomato___Target_Spot</li>
+                       <li>Tomato___Tomato_Yellow_Leaf_Curl_Virus</li>
+                       <li>Tomato___Tomato_mosaic_virus</li>
+                       <li>Tomato___healthy</li>
+                       <li>Rice__Leaf_smut</li>
+                       <li>Rice__Brown_spot</li>
+                       <li>Rice__Bacterial_leaf_blight</li>
+
+                   </ul>
+            </p>
+            </div>
+            <div class="pd-section" id="diagnose"  style="margin-bottom: 150px;">
+                <h2>Demonstration</h2>
+          <p class="lead">
+              Upload an image of a leaf of the plant you want to check for disease.
+          </p>
+          <form enctype="multipart/form-data" id="demonstration-form">
+             
+                <div class="form-group">
+                  <input type="file" class="form-control-file" id="demonstration-file">
+                </div>
+                <button type="submit" class="btn btn-primary" id="demonstration-btn">Submit</button>
+          </form>
+          <div class="pd-card">
+            <img src="http://placehold.it/180" class="rounded float-left" alt="" id="result-image" height="356px" width="356px">
+            <div style="font-size: 24px; margin-left: 400px; margin-top: 70px;">
+            <p style="font-weight: 300;">Plant: <span style="font-weight: 500;" id="plant-category"></span></p>
+            <p style="font-weight: 300;">Disease: <span style="font-weight: 500;" id="plant-disease"></span></p>
+            </div>
+          </div>
+
+            </div>
+          </div>
+        <div>
+          <p class="text-center font-weight-light">Project by <span class="font-weight-bold">Akshat Papnoi</span></p>
+        </div>
+      </div>
+        
+
+  <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+  <!-- Custom JS-->
+  <script src="{% static 'main.js' %}"></script>
+</body>
+
+
+</html>
